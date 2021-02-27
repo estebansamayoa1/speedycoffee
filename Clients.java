@@ -47,6 +47,7 @@ public class Clients {
             if (this.orders[i] == null)
             {
                 this.orders[i] = newOrder;
+                break;
             }
         }
     }

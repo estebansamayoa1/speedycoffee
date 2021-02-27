@@ -6,10 +6,9 @@ public class Orders {
     private Coffee[] order = new Coffee[30];
     private LocalDateTime date;
 
-    public Orders(Coffee[] order, LocalDateTime date)
+    public Orders(Coffee[] order)
     {
         this.order = order;
-        this.date = date;
     }
 
     public Coffee[] getOrder ()
@@ -17,27 +16,40 @@ public class Orders {
         return this.order;
     }
 
-    public String getOrderDate()
+    public String printOrderDate()
     {
         DateTimeFormatter theFormat = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm");
         String formattedDate = this.date.format(theFormat);
         return formattedDate;
     }
     
-    public void setNewOrder (Coffee newCoffee)
+    public void setNewCoffeeInOrder (Coffee newCoffee)
     {
         for (int i = 0; i < this.order.length; i++)
         {
             if (this.order[i] == null)
             {
                 this.order[i] = newCoffee;
+                break;
             }
         }
     }
 
-    public void setOrderDate (int year, int month, int day, int hour, int minute)
+    public void setOrderDate (String theDate)
     {
-        LocalDateTime newDate = LocalDateTime.of(year, month, day, hour, minute);
-        this.date = newDate;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        this.date = LocalDateTime.parse(theDate, formatter);
+    }
+
+    public String toString()
+    {
+        for (int i = 0; i < this.order.length; i++)
+        {
+            if (this.order[i] != null)
+            {
+                System.out.println(this.order[i]);
+            }
+        }
+        return "---------------------\n For " +printOrderDate();
     }
 }

@@ -32,4 +32,9 @@ public class Coffee {
     {
         return this.extra;
     }
+
+    public String toString()
+    {
+        return this.kind+ "\n---------------\nSugar: "+this.sugar+ "\nMilk: "+this.milk+ "\nExtra: " +this.extra;
+    }
 }
