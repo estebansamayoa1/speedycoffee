@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter; 
 
 public class Runner {
     
@@ -6,11 +8,17 @@ public class Runner {
     static Scanner strs = new Scanner (System.in);
 
     static String user, name, mail, password, type, sugar, milk, extra, pickUpDate;
-    static int cel, i, year, month, day, hour, minute, choice;
+    static int cel, i, year, month, day, hour, minute, choice, counter, j, k;
     static Clients[] dataBase = new Clients[50];
     static Clients theClient;
     static Orders newOrder;
+    static Orders[] clientsOrders;
+    static Orders[] upcomingOrders = new Orders[20];
     static Coffee[] CoffeeOrders = new Coffee[30];
+    static Coffee[] CoffeeOrder;
+    static LocalDateTime now = LocalDateTime.now();
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    static LocalDateTime endDate = LocalDateTime.parse("08/03/2021 00:00", formatter);
 
     public static void addToDataBase(Clients newOne)
     {
@@ -70,12 +78,17 @@ public class Runner {
     public static void order()
     {
         boolean done = true;
-        int enter = 1;
+        int size = 0;
         i = 0;
+        System.out.println("MAKE YOUR ORDER");
+        System.out.println("---------------------\n");
+        System.out.println("How many coffees will you order?");
+        size = ints.nextInt();
+        CoffeeOrder = new Coffee[size];
         while (done)
         {
-            System.out.println("MAKE YOUR ORDER");
-            System.out.println("---------------------\n");
+            System.out.println("MENU");
+            System.out.println("---------------------");
             System.out.println("We offer:\nCapuccino      Americano      Latte      Frapuccinos      Cold Brew");
             System.out.println("Which one would you like to order?");
             type = strs.nextLine();
@@ -85,12 +98,12 @@ public class Runner {
             milk = strs.nextLine();
             System.out.println("Anything extra?");
             extra = strs.nextLine();
-            Coffee newCoffe = new Coffee(type, sugar, milk, extra);
-            CoffeeOrders[i] = newCoffe;
+            Coffee newCoffee = new Coffee(type, sugar, milk, extra);
+            CoffeeOrder[i] = newCoffee;
             i++;
-            System.out.println("Press '1' to continue placing orders or press '0' to stop ordering");
-            enter = ints.nextInt();
-            if (enter == 0)
+            //System.out.println("Press '1' to continue placing orders or press '0' to stop ordering");
+            //enter = ints.nextInt();
+            if (i  == size)
             {
                 done = false;
             }
@@ -99,7 +112,7 @@ public class Runner {
                 continue;
             }
         }
-        newOrder = new Orders(CoffeeOrders);
+        newOrder = new Orders(CoffeeOrder);
         System.out.println("When do you whant your order ready? Set the pickup date (dd/MM/yyyy hh:mm)\nPickUp date and time: ");
         pickUpDate = strs.nextLine();
         newOrder.setOrderDate(pickUpDate);
@@ -151,6 +164,37 @@ public class Runner {
         System.out.println(theClient.getPassword());
     }
 
+    public static void seeClients()
+    {
+        counter = 1;
+        System.out.println("ALL CLIENTS\n~~~~~~~~~~~~~~~~~~~~~");
+        for (i = 0; i < dataBase.length; i++)
+        {
+            if (dataBase[i] != null)
+            {
+                System.out.println("\nClient " + counter);
+                System.out.println(dataBase[i]);
+                counter++;
+            }
+        }
+        System.out.println("Enter the client's number to see their orders: ");
+        choice = ints.nextInt();
+        dataBase[choice-1].printAllClientOrders();
+    }
+
+    public static void setUpcomingOrders() 
+    {
+        for (i=0; i < dataBase.length; i++)
+        {
+            if (dataBase[i] != null)
+            {
+                System.out.println("Client: " + dataBase[i].getName());
+                dataBase[i].getUpcomingOrders(endDate);
+            }
+
+        }
+    }
+
     public static void main(String args[])
     {
         choice = 9;
@@ -161,6 +205,8 @@ public class Runner {
             System.out.println("3. Make an order");
             System.out.println("4. See past Orders");
             System.out.println("5. Edit profile");
+            System.out.println("6. See all clients");
+            System.out.println("7. See this weeks orders");
             System.out.println("Enter your choice: ");
             choice = ints.nextInt();
             if (choice == 1)
@@ -182,6 +228,14 @@ public class Runner {
             else if (choice == 5)
             {
                 editProfile();
+            }
+            else if (choice == 6)
+            {
+                seeClients();
+            }
+            else if (choice == 7)
+            {
+                setUpcomingOrders();
             }
         }
     }

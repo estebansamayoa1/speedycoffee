@@ -2,8 +2,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter; 
 
 public class Orders {
-    
-    private Coffee[] order = new Coffee[30];
+
+    private Coffee[] order;
     private LocalDateTime date;
 
     public Orders(Coffee[] order)
@@ -14,6 +14,11 @@ public class Orders {
     public Coffee[] getOrder ()
     {
         return this.order;
+    }
+
+    public LocalDateTime getDate()
+    {
+        return this.date;
     }
 
     public String printOrderDate()
@@ -50,6 +55,6 @@ public class Orders {
                 System.out.println(this.order[i]);
             }
         }
-        return "---------------------\n For " +printOrderDate();
+        return "---------------------\n For " +printOrderDate() + "\n";
     }
 }

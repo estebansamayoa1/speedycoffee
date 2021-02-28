@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 public class Clients {
 
     private String user;
@@ -77,6 +79,20 @@ public class Clients {
         }
     }
 
+    public void getUpcomingOrders(LocalDateTime deadLine)
+    {
+        for (int i = 0; i < this.orders.length; i++)
+        {
+            if (this.orders[i] != null)
+            {
+                if (this.orders[i].getDate().isBefore(deadLine))
+                {
+                    System.out.println(this.orders[i]);
+                }
+            }
+        }
+    }
+
     public Orders[] getOrders ()
     {
         return this.orders;
@@ -99,6 +115,6 @@ public class Clients {
 
     public String toString()
     {
-        return this.name + "\nUser: " + this.user + "\nPhone Nunmber: " + this.cel + "\nMail: " + this.mail;
+        return "-------------------\n" + this.name + "\n-------------------\n User: " + this.user + "\n Phone Nunmber: " + this.cel + "\n Mail: " + this.mail;
     }
 }
