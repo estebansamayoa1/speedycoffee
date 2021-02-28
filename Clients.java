@@ -21,9 +21,19 @@ public class Clients {
         return this.user;
     }
 
+    public void changeUser (String newUser)
+    {
+        this.user = newUser;
+    }
+
     public String getName ()
     {
         return this.name;
+    }
+
+    public void changeName (String newName)
+    {
+        this.name = newName;
     }
 
     public int getCel ()
@@ -31,14 +41,29 @@ public class Clients {
         return this.cel;
     }
 
+    public void changeCel (int newPhone)
+    {
+        this.cel = newPhone;
+    }
+
     public String getMail ()
     {
         return this.mail;
     }
 
+    public void changeMail (String newEmail)
+    {
+        this.mail = newEmail;
+    }
+
     public String getPassword ()
     {
         return this.password;
+    }
+
+    public void changePassword (String newPassword)
+    {
+        this.password = newPassword;
     }
 
     public void setOrderofClient (Orders newOrder){
@@ -55,6 +80,21 @@ public class Clients {
     public Orders[] getOrders ()
     {
         return this.orders;
+    }
+
+    public void printAllClientOrders()
+    {
+        int counter = 1;
+        System.out.println(this.name + "'s orders");
+        for (int i = 0; i < this.orders.length; i++)
+        {
+            if (this.orders[i] != null)
+            {
+                System.out.println("Order " + counter + "\n======================");
+                System.out.println("\n" + this.orders[i]);
+                counter ++;
+            }
+        }
     }
 
     public String toString()

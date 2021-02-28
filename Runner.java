@@ -6,7 +6,7 @@ public class Runner {
     static Scanner strs = new Scanner (System.in);
 
     static String user, name, mail, password, type, sugar, milk, extra, pickUpDate;
-    static int cel, i, year, month, day, hour, minute;
+    static int cel, i, year, month, day, hour, minute, choice;
     static Clients[] dataBase = new Clients[50];
     static Clients theClient;
     static Orders newOrder;
@@ -53,10 +53,6 @@ public class Runner {
                 {
                     theClient = dataBase[i];
                 }
-                else 
-                {
-                    System.out.println("The user is not in our system. Try again or register to our service.");
-                }
             }
         }
         System.out.println("Enter your password: ");
@@ -92,7 +88,7 @@ public class Runner {
             Coffee newCoffe = new Coffee(type, sugar, milk, extra);
             CoffeeOrders[i] = newCoffe;
             i++;
-            System.out.println("Press enter to continue or press '0' to stop ordering");
+            System.out.println("Press '1' to continue placing orders or press '0' to stop ordering");
             enter = ints.nextInt();
             if (enter == 0)
             {
@@ -108,17 +104,63 @@ public class Runner {
         pickUpDate = strs.nextLine();
         newOrder.setOrderDate(pickUpDate);
         theClient.setOrderofClient(newOrder);
+    }
 
+    public static void seeOrders()
+    {
+        theClient.printAllClientOrders();
+    }
+
+    public static void editProfile()
+    {
+        System.out.println("What do you want to change from your profile?\n1. Username\n2. Password\n3. Mail\n4. Phone number\n5. Name");
+        choice = ints.nextInt();
+        switch (choice)
+        {
+            case 1:
+            System.out.println("Enter your new username: ");
+            user = strs.nextLine();
+            theClient.changeUser(user);
+            break;
+
+            case 2: 
+            System.out.println("Enter your new password: ");
+            password = strs.nextLine();
+            theClient.changePassword(password);
+            break;
+
+            case 3: 
+            System.out.println("Enter your new mail: ");
+            mail = strs.nextLine();
+            theClient.changeMail(mail);
+            break;
+
+            case 4: 
+            System.out.println("Enter your new phone number: ");
+            cel = ints.nextInt();
+            theClient.changeCel(cel);
+            break;
+
+            case 5:
+            System.out.println("Enter your new name: ");
+            name = strs.nextLine();
+            theClient.changeName(name);
+            break;
+        }
+        System.out.println(theClient.getUser());
+        System.out.println(theClient.getPassword());
     }
 
     public static void main(String args[])
     {
-        int choice = 9;
+        choice = 9;
         while (choice != 0)
         {
             System.out.println("1. Register");
             System.out.println("2. Login");
             System.out.println("3. Make an order");
+            System.out.println("4. See past Orders");
+            System.out.println("5. Edit profile");
             System.out.println("Enter your choice: ");
             choice = ints.nextInt();
             if (choice == 1)
@@ -132,6 +174,14 @@ public class Runner {
             else if (choice == 3)
             {
                 order();
+            }
+            else if (choice == 4)
+            {
+                seeOrders();
+            }
+            else if (choice == 5)
+            {
+                editProfile();
             }
         }
     }
