@@ -4,8 +4,7 @@ public class Lockers
 {
     private int numberOrder;
     int o = 0;
-    private int[] lockers = new int[30];
-    Scanner choice = new Scanner (System.in);
+    static Scanner choice = new Scanner (System.in);
 
     public Lockers(int numberOrder)
     {
@@ -17,52 +16,65 @@ public class Lockers
         return this.numberOrder;
     }
 
-    public void searchLocker()
+    public static void showLockers(int[] lockers)
     {
-        System.out.println("Input the order number to look for in the lockers:");
-        int order = choice.nextInt();
-        
-        for (int i = 0; i < lockers.length; i++)
-        {
-            if (i == order)
-            {
-                System.out.println("the order can be found at locker " + i);
-            }
-            else
-            {
-                System.out.println("the order is can not be found in any locker");
-            }
-        }
-    }
-
-    public void showLockers()
-    {
-        String showLockers;
+        String show;
 
         for (int i = 0; i < lockers.length; i++)
         {
             if (lockers[i] == 0)
             {
-                showLockers = ("| " + i + " |");
+                show = ("| " + i + " |");
             }
             else
             {
-                showLockers = ("| x |");
+                show = ("| x |");
             }
-            System.out.print(showLockers);
+            System.out.print(show);
         }
     }
 
     public static int[] addToLocker(int numOrder, int lockers[])
     {
-        int newlockers[] = new int[30];
-        int n = 0;
-
-        for (int i = 0; i < newlockers.length; i++)
+        for (int i = 0; i < lockers.length; i++)
         {
-            newlockers[i] = lockers[i];
-            newlockers[n] = numOrder;
+            if (lockers[i] == 0)
+            {
+                lockers[i] = numOrder;
+                break;
+            }
         }
-        return newlockers;
+        return lockers;
+    }
+
+    public static int[] removeOrder(int lockers[], int index)
+    {
+        if (lockers == null || index < 0 || index >= lockers.length)
+        {
+            return lockers;
+        }
+
+        for (int i = 0; i < lockers.length; i++)
+        {
+            if (i == index)
+            {
+                lockers[i] = 0;
+            }
+        }
+        return lockers;
+    }
+
+    public static void searchLocker(int[] lockers)
+    {   
+        System.out.println("Input the order number to look for in the lockers:");
+        int numOrder = choice.nextInt();
+
+        for (int i = 0; i < lockers.length; i++)
+        {
+            if (numOrder == lockers[i])
+            {
+                System.out.println("the order can be found at locker " + i);
+            }
+        }
     }
 }
