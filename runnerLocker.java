@@ -32,7 +32,7 @@ public class runnerLocker
         
                 if (opcion == 2)
                 {
-                    Lockers.searchLocker(lockers);
+                    Lockers.searchLocker(lockers, numOrder);
                 }
         
                 if (opcion == 3)
@@ -59,7 +59,7 @@ public class runnerLocker
     
                     if (opcion == 5)
                     {
-                        Lockers.searchLocker(lockers);
+                        Lockers.searchLocker(lockers, numOrder);
                     }
         
                     if (opcion == 6)

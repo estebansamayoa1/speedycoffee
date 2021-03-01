@@ -5,10 +5,12 @@ public class Orders {
 
     private Coffee[] order;
     private LocalDateTime date;
+    private int numberOrder;
 
-    public Orders(Coffee[] order)
+    public Orders(Coffee[] order, int numberOrder)
     {
         this.order = order;
+        this.numberOrder = numberOrder;
     }
 
     public Coffee[] getOrder ()
@@ -19,6 +21,11 @@ public class Orders {
     public LocalDateTime getDate()
     {
         return this.date;
+    }
+
+    public int getNumberofOrder ()
+    {
+        return this.numberOrder;
     }
 
     public String printOrderDate()
@@ -48,6 +55,7 @@ public class Orders {
 
     public String toString()
     {
+        System.out.println("Order number: " + this.numberOrder);
         for (int i = 0; i < this.order.length; i++)
         {
             if (this.order[i] != null)

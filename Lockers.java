@@ -19,7 +19,7 @@ public class Lockers
     public static void showLockers(int[] lockers)
     {
         String show;
-
+        System.out.println("THE LOCKERS!\n---------------------\n\n");
         for (int i = 0; i < lockers.length; i++)
         {
             if (lockers[i] == 0)
@@ -64,16 +64,13 @@ public class Lockers
         return lockers;
     }
 
-    public static void searchLocker(int[] lockers)
+    public static void searchLocker(int[] lockers, int numOrder)
     {   
-        System.out.println("Input the order number to look for in the lockers:");
-        int numOrder = choice.nextInt();
-
         for (int i = 0; i < lockers.length; i++)
         {
             if (numOrder == lockers[i])
             {
-                System.out.println("the order can be found at locker " + i);
+                System.out.println("The order can be found at locker " + i);
             }
         }
     }
