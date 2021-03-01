@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.util.*;
 
 public class Clients {
 
@@ -8,6 +9,7 @@ public class Clients {
     private String mail;
     private String password;
     private Orders[] orders = new Orders[20];
+    static Scanner option = new Scanner (System.in);
 
     public Clients (String user, String name, int cel, String mail, String password)
     {
@@ -112,6 +114,20 @@ public class Clients {
             }
         }
     }
+
+    public void deleteOrder(){
+      printAllClientOrders();
+      System.out.println("Ingrese el número de orden de desea borrar");
+      int a=option.nextInt();
+      a=a-1;
+      for(int i=0;i<this.orders.length;i++){
+        if (i==a){
+          this.orders[i]=null;
+        }
+      }
+    }
+
+
 
     public String toString()
     {
