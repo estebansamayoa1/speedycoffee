@@ -19,7 +19,7 @@ public class Lockers
     public static void showLockers(int[] lockers)
     {
         String show;
-        System.out.println("THE LOCKERS!\n---------------------\n\n");
+        System.out.println("\nTHE LOCKERS!\n---------------------\n");
         for (int i = 0; i < lockers.length; i++)
         {
             if (lockers[i] == 0)

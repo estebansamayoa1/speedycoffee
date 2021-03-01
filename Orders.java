@@ -30,7 +30,7 @@ public class Orders {
 
     public String printOrderDate()
     {
-        DateTimeFormatter theFormat = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm");
+        DateTimeFormatter theFormat = DateTimeFormatter.ofPattern("E, MMM dd yyyy hh:mm a");
         String formattedDate = this.date.format(theFormat);
         return formattedDate;
     }
@@ -49,7 +49,7 @@ public class Orders {
 
     public void setOrderDate (String theDate)
     {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
         this.date = LocalDateTime.parse(theDate, formatter);
     }
 

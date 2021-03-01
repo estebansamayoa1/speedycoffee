@@ -1,5 +1,4 @@
 import java.time.LocalDateTime;
-import java.util.*;
 
 public class Clients {
 
@@ -9,7 +8,6 @@ public class Clients {
     private String mail;
     private String password;
     private Orders[] orders = new Orders[20];
-    static Scanner option = new Scanner (System.in);
 
     public Clients (String user, String name, int cel, String mail, String password)
     {

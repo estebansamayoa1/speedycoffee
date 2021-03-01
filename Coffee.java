@@ -1,4 +1,3 @@
-import java.util.*;
 
 public class Coffee {
 
@@ -6,7 +5,6 @@ public class Coffee {
     private String sugar;
     private String milk;
     private String extra;
-    static Scanner choice = new Scanner (System.in);
 
     public Coffee (String kind, String sugar, String milk, String extra)
     {

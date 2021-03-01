@@ -1,6 +1,4 @@
 import java.util.Scanner;
-
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter; 
 
@@ -19,8 +17,8 @@ public class Runner {
     static Coffee[] CoffeeOrder;
     static int[] lockers = new int[30];
     static LocalDateTime now = LocalDateTime.now();
-    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-    static LocalDateTime endDate = LocalDateTime.parse("08/03/2021 00:00", formatter);
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
+    static LocalDateTime endDate = LocalDateTime.parse("08/03/2021 00:00 AM", formatter);
 
     public static void clearScreen() 
     {  
@@ -142,7 +140,7 @@ public class Runner {
         }
         newOrder = new Orders(CoffeeOrder, noOrder);
         lockers = Lockers.addToLocker(noOrder, lockers);
-        System.out.println("\nWhen do you whant your order ready? Set the pickup date (dd/MM/yyyy hh:mm)\nPickUp date and time: ");
+        System.out.println("\nWhen do you whant your order ready? Set the pickup date (dd/MM/yyyy hh:mm AM/PM)\nPickUp date and time: ");
         pickUpDate = strs.nextLine();
         newOrder.setOrderDate(pickUpDate);
         theClient.setOrderofClient(newOrder);
@@ -358,6 +356,8 @@ public class Runner {
 
                                 case 4:
                                 theClient.getUpcomingOrders(endDate);
+                                System.out.println("\nPress enter to continue: ");
+                                enter = strs.nextLine();
                                 break;
 
                                 case 5:
@@ -396,6 +396,8 @@ public class Runner {
                         case 2: 
                         clearScreen();
                         Lockers.showLockers(lockers);
+                        System.out.println("\nPress enter to continue: ");
+                        enter = strs.nextLine();
                         break;
 
                         case 3: 
@@ -403,11 +405,7 @@ public class Runner {
                         break;
                     }
                 }
-
-                
             }
         }
     }
 }
-
-
