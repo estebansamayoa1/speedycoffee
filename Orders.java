@@ -13,7 +13,7 @@ public class Orders {
         this.numberOrder = numberOrder;
     }
 
-    public Coffee[] getOrder ()
+    public Coffee[] getCoffeeOrder ()
     {
         return this.order;
     }

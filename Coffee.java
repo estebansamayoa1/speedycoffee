@@ -1,16 +1,39 @@
+import java.util.*;
+
 public class Coffee {
-    
+
     private String kind;
     private String sugar;
-    private String milk; 
+    private String milk;
     private String extra;
+    static Scanner choice = new Scanner (System.in);
 
     public Coffee (String kind, String sugar, String milk, String extra)
     {
         this.kind = kind;
         this.sugar = sugar;
-        this.milk = milk; 
-        this.extra = extra; 
+        this.milk = milk;
+        this.extra = extra;
+    }
+
+    public void changeKind(String newKind)
+    {
+        this.kind = newKind;
+    }
+
+    public void changeSugar(String newSugar)
+    {
+        this.sugar = newSugar;
+    }
+
+    public void changeMilk(String newMilk)
+    {
+        this.milk = newMilk;
+    }
+
+    public void changeExtra(String newExtra)
+    {
+        this.extra = newExtra;
     }
 
     public String getKind ()

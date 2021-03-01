@@ -203,6 +203,60 @@ public class Runner {
         enter = strs.nextLine();
     }
 
+    public static void editOrder(){
+        clearScreen();
+        counter = 1;
+        System.out.println("Current Orders: ");
+        theClient.printAllClientOrders();
+        System.out.println("Select which order would you like to change: ");
+        int numberofOrder = ints.nextInt();
+        Coffee[] theCoffeeOrder = theClient.getOrders()[numberofOrder - 1].getCoffeeOrder();
+        for (i = 0; i < theCoffeeOrder.length; i++)
+        {
+            if (theCoffeeOrder[i] != null)
+            {
+                System.out.println("Coffee number " + counter);
+                System.out.println(theCoffeeOrder[i]);
+            }
+            counter++;
+        }
+        System.out.println("Select which coffee would you like to edit: ");
+        int numberCoffee = ints.nextInt();
+        Coffee editCoffee = theCoffeeOrder[numberCoffee - 1];
+        System.out.println("1.Kind\n2.Sugar\n3.Milk\n4.Extra");
+        System.out.println("Select which option would you like to change: ");
+        choice = ints.nextInt();
+        switch(choice){
+            case 1:
+            System.out.println("We offer:\nCapuccino      Americano      Latte      Frapuccinos      Cold Brew");
+            System.out.println("Which one would you like to order instead?");
+            type = strs.nextLine();
+            editCoffee.changeKind(type);
+            break;
+
+            case 2:
+            System.out.println("You want sugar?\nWe have white, brown, Splenda and Stevia\nIf you do not want any kind of sugar enter none.");
+            sugar = strs.nextLine();
+            editCoffee.changeSugar(sugar);
+            break;
+
+            case 3:
+            System.out.println("Want any milk? We offer whole milk, lactose-free semi-skim, almond milk, coconut milk, low-fat and oat milk.\nIf you do not want any kind of milk enter none.");
+            milk = strs.nextLine();
+            editCoffee.changeMilk(milk);
+            break;
+
+            case 4:
+            System.out.println("Anything extra?");
+            extra = strs.nextLine();
+            editCoffee.changeExtra(extra);
+            break;
+        }
+        System.out.println("Changes saved!\n\nPress enter to continue: ");
+        enter = strs.nextLine();
+
+    }
+
     public static void seeClients()
     {
         clearScreen();
@@ -228,7 +282,7 @@ public class Runner {
     public static void setUpcomingOrders() 
     {
         clearScreen();
-        System.out.println("UPCOMING ORDERS IN THIS WEEK\n~~~~~~~~~~~~~~~~~~~~~~~~~\n\n");
+        System.out.println("UPCOMING ORDERS IN THIS WEEK\n~~~~~~~~~~~~~~~~~~~~~~~~~\n");
         for (i=0; i < dataBase.length; i++)
         {
             if (dataBase[i] != null)
@@ -250,19 +304,17 @@ public class Runner {
         System.out.println("What order number would you like to know?: ");
         int orderN = ints.nextInt();
         Lockers.searchLocker(lockers, theClient.getOrders()[orderN - 1].getNumberofOrder());
-        System.out.println("\nPress enter to continue: ");
-        enter = strs.nextLine();
     } 
 
     public static void main(String args[])
     {
         int user = 0;
         choice = 0;
-        clearScreen();
-        System.out.println("Welcome to SpeedyCoffee!\n1. Client\n2. Admin\n3. Exit\nEnter your choice");
-        user = ints.nextInt();
         while (user != 3)
         {
+            clearScreen();
+            System.out.println("Welcome to SpeedyCoffee!\n1. Client\n2. Admin\n3. Exit\nEnter your choice");
+            user = ints.nextInt();
             switch (user)
             {
                 case 1:
@@ -291,6 +343,13 @@ public class Runner {
                                 break;
 
                                 case 2:
+                                clearScreen();
+                                theClient.printAllClientOrders();
+                                System.out.println("Enter the order number you want to cancel: ");
+                                int option = ints.nextInt();
+                                theClient.deleteOrder(option);
+                                System.out.println("Order is no longer active! \nPress enter to continue: ");
+                                enter = strs.nextLine();
                                 break;
 
                                 case 3: 
@@ -302,11 +361,14 @@ public class Runner {
                                 break;
 
                                 case 5:
+                                editOrder();
                                 break;
 
                                 case 6:
                                 getNumberLockerAndMyLocker();
                                 Lockers.showLockers(lockers);
+                                System.out.println("\nPress enter to continue: ");
+                                enter = strs.nextLine();
                                 break;
 
                                 case 7:
@@ -315,9 +377,6 @@ public class Runner {
                             }
                         }
                         break;
-                        
-                        case 3:
-                        break;
                     }
                 }
                 break;
@@ -325,7 +384,8 @@ public class Runner {
                 clearScreen();
                 while (choice != 4)
                 {
-                    System.out.println("Administrator Menu\n-----------------------\n1. All clients and orders\n2. See lockers\n3. See this weeks upcoming orders\n4. Exit\nEnter your choice: ");
+                    clearScreen();
+                    System.out.println("\nAdministrator Menu\n-----------------------\n1. All clients and orders\n2. See lockers\n3. See this weeks upcoming orders\n4. Exit\nEnter your choice: ");
                     choice = ints.nextInt();
                     switch (choice)
                     {
