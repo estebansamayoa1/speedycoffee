@@ -5,6 +5,7 @@ public class Coffee {
     private String sugar;
     private String milk;
     private String extra;
+    private float price = 25;
 
     public Coffee (String kind, String sugar, String milk, String extra)
     {
@@ -12,6 +13,14 @@ public class Coffee {
         this.sugar = sugar;
         this.milk = milk;
         this.extra = extra;
+        if (this.extra.equals("none"))
+        {
+            this.price = 25;
+        }
+        else
+        {
+            this.price += 3;
+        }
     }
 
     public void changeKind(String newKind)
@@ -39,6 +48,11 @@ public class Coffee {
         return this.kind;
     }
 
+    public float getPrice()
+    {
+        return this.price;
+    }
+
     public String getSugar ()
     {
         return this.sugar;
@@ -58,4 +72,5 @@ public class Coffee {
     {
         return "---------------\n"+this.kind+ "\n---------------\nSugar: "+this.sugar+ "\nMilk: "+this.milk+ "\nExtra: " +this.extra;
     }
+
 }

@@ -10,6 +10,7 @@ public class Runner {
     static String user, name, mail, password, type, sugar, milk, extra, pickUpDate, enter;
     static int cel, i, year, month, day, hour, minute, choice, counter, j, k;
     static int noOrder = 0;
+    static float total = 0;
     static Clients[] dataBase = new Clients[50];
     static Clients theClient;
     static Orders newOrder;
@@ -148,7 +149,8 @@ public class Runner {
         System.out.println("Placing your order...");
         wait(1000);
         clearScreen();
-        System.out.println("Order number: "+noOrder+"\nThanks for trusting us with your coffee!\n\nPress enter to continue:");
+        total = newOrder.getOrderTotal();
+        System.out.println("Order number: "+noOrder+"\nTotal: "+total+"\nThanks for trusting us with your coffee!\n\nPress enter to continue:");
         enter = strs.nextLine();
     }
 

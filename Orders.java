@@ -6,6 +6,7 @@ public class Orders {
     private Coffee[] order;
     private LocalDateTime date;
     private int numberOrder;
+    private float total;
 
     public Orders(Coffee[] order, int numberOrder)
     {
@@ -17,6 +18,20 @@ public class Orders {
     {
         return this.order;
     }
+
+    public float getOrderTotal ()
+    {
+        for (int i = 0; i < this.order.length; i++)
+        {
+            if (this.order[i] != null)
+            {
+                this.total += this.order[i].getPrice();
+                
+            }
+        }
+        return this.total;
+    }
+
 
     public LocalDateTime getDate()
     {
@@ -63,6 +78,7 @@ public class Orders {
                 System.out.println(this.order[i]);
             }
         }
-        return "---------------------\n For " +printOrderDate() + "\n";
+        return "---------------------\n For " +printOrderDate() + "\nOrder total: Q." +this.total;
     }
+
 }
